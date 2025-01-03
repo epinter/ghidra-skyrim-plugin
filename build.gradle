@@ -1,0 +1,53 @@
+plugins {
+	id 'java'
+	id 'java-library'
+	id 'idea'
+}
+
+group = 'dev.pinter'
+version = '0.5'
+
+repositories {
+	mavenCentral()
+}
+
+java {
+	sourceCompatibility = JavaVersion.VERSION_21
+}
+
+jar {
+	//noinspection GroovyAssignabilityCheck
+	manifest {
+		attributes(
+				'Implementation-Title': 'ghidra-skyrim-plugin',
+				'Implementation-Version': project.version,
+				'Implementation-Vendor': 'Emerson Pinter',
+		)
+	}
+}
+
+ext {
+	ghidraDir = "../ghidra"
+}
+
+if (System.env.GHIDRA_INSTALL_DIR) {
+	// export GHIDRA_INSTALL_DIR=<Absolute path to Ghidra>
+	ghidraDir = System.env.GHIDRA_INSTALL_DIR
+} else if (project.hasProperty("GHIDRA_INSTALL_DIR")) {
+	// ./gradlew -PGHIDRA_INSTALL_DIR=<Absolute path to Ghidra> distributeExtension
+	ghidraDir = project.properties["GHIDRA_INSTALL_DIR"]
+}
+
+dependencies {
+}
+
+task distributeExtension {
+	group "Ghidra"
+
+	apply from: file(ghidraDir).getCanonicalPath() + "/support/buildExtension.gradle"
+	dependsOn ':buildExtension'
+}
+buildExtension.exclude '.idea/**'
+buildExtension.exclude 'assets/**'
+buildExtension.exclude 'gradle/**'
+buildExtension.exclude '.gradle/**'
