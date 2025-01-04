@@ -871,7 +871,7 @@ public class SkyrimPlugin extends ProgramPlugin {
 
     @Override
     protected void locationChanged(ProgramLocation loc) {
-        if (loc == null) {
+        if (loc == null || !isCompatible()) {
             return;
         }
         Function currentFunction = currentProgram.getFunctionManager().getFunctionContaining(loc.getAddress());
