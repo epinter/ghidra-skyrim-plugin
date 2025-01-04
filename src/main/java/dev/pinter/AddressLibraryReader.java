@@ -140,7 +140,7 @@ public class AddressLibraryReader {
 
         public Builder withVersion(String version) {
             if (version == null) {
-                throw new IllegalArgumentException("Invalid version");
+                throw new IllegalArgumentException(String.format("Invalid version (%s)", version));
             }
 
             String[] versionNumbers = version.split("[-.]");
@@ -151,7 +151,7 @@ public class AddressLibraryReader {
                 AddressLibraryReader.this.version = String.format("%s-%s-%s-%s-%s",
                         versionNumbers[0], versionNumbers[1], versionNumbers[2], versionNumbers[3], versionNumbers[4]);
             } else {
-                throw new IllegalArgumentException("Invalid version");
+                throw new IllegalArgumentException(String.format("Invalid version (%s)", version));
             }
             return this;
         }

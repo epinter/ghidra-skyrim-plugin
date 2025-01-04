@@ -89,7 +89,7 @@ public class SkyrimPlugin extends ProgramPlugin {
                     Map.entry(Cfg.PE_NAME, "TESV: Skyrim"),
                     Map.entry(Cfg.PE_FILEDESC, "Skyrim"),
                     Map.entry(Cfg.EXE_NAME, "SkyrimSE"),
-                    Map.entry(Cfg.DEFAULT_GAME_VERSION, "1.5.97"),
+                    Map.entry(Cfg.DEFAULT_GAME_VERSION, "1.5.97.0"),
                     Map.entry(Cfg.OFFSETS_FORMAT, "RVA"),
                     Map.entry(Cfg.OFFSETS_DIR, "skyrim-offsets"))
             ),
